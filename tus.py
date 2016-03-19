@@ -32,6 +32,8 @@ except:
 
 try:
 	fwers = open (conf['destination'] + 'followers.csv', 'r')
+	d = fwers.readline ().replace ('\n', '')
+	conf['accounts'] = d.split (',')[1:]
 except:
 	fwers = open (conf['destination'] + 'followers.csv', 'w')
 
@@ -43,6 +45,8 @@ except:
 
 try:
 	fwing = open (conf['destination'] + 'following.csv', 'r')
+	d = fwing.readline ().replace ('\n', '')
+	conf['accounts'] = d.split (',')[1:]
 except:
 	fwing = open (conf['destination'] + 'following.csv', 'w')
 
@@ -53,7 +57,7 @@ except:
 	fwing.close ()
 
 
-while True:
+if True:
 	fwers = open (conf['destination'] + 'followers.csv', 'a')
 	fwing = open (conf['destination'] + 'following.csv', 'a')
 
@@ -76,5 +80,4 @@ while True:
 
 	fwers.close ()
 	fwing.close ()	
-	time.sleep (60*60)
 
