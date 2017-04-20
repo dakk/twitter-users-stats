@@ -8,7 +8,7 @@ import os
 conf = { "accounts": ["dagide"], "destination": "data/"}
 
 def formatNumber (data):
-	return data.replace (' ', '').replace ('M', '000000').replace ('m', '000000').replace ('K', '000').replace ('k', '000').replace ('.', '').replace (',', '')
+	return data.replace (' ', '').replace ('\xa0', '').replace ('M', '000000').replace ('m', '000000').replace ('K', '000').replace ('k', '000').replace ('.', '').replace (',', '')
 
 def getUser (account):
 	r = requests.get ('http://twitter.com/' + account)
