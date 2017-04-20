@@ -7,11 +7,14 @@ import os
 
 conf = { "accounts": ["dagide"], "destination": "data/"}
 
+def formatNumber (data):
+	return data.replace (' ', '').replace ('M', '000000').replace ('m', '000000').replace ('K', '000').replace ('k', '000').replace ('.', '').replace (',', '')
+
 def getUser (account):
 	r = requests.get ('http://twitter.com/' + account)
-	tweets = r.text.split ('ProfileNav-value')[1].split ('>')[1].split ('<')[0].replace (' K', '000').replace ('.', '').replace (',', '')
-	following = r.text.split ('ProfileNav-value')[2].split ('>')[1].split ('<')[0].replace (' K', '000').replace ('.', '').replace (',', '')
-	followers = r.text.split ('ProfileNav-value')[3].split ('>')[1].split ('<')[0].replace (' K', '000').replace ('.', '').replace (',', '')
+	tweets = formatNumber (r.text.split ('ProfileNav-value')[1].split ('>')[1].split ('<')[0])
+	following = formatNumber (r.text.split ('ProfileNav-value')[2].split ('>')[1].split ('<')[0])
+	followers = formatNumber (r.text.split ('ProfileNav-value')[3].split ('>')[1].split ('<')[0])
 	return (tweets, followers, following)
 
 try:
